@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSearch } from '../../context/SearchContext';
-import { FiSearch, FiMic, FiX } from 'react-icons/fi';
+import { FiSearch, FiMic } from 'react-icons/fi';
 
 export const SearchBar = () => {
   const { searchQuery, setSearchQuery, isListening, setIsListening } = useSearch();
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
-  const [isFocused, setIsFocused] = useState(false);
 
   const startListening = () => {
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
@@ -34,63 +33,28 @@ export const SearchBar = () => {
   };
 
   return (
-    <div className="relative max-w-2xl mx-auto">
-      <div className={`relative flex items-center transition-all duration-300 ${
-        isFocused ? 'transform scale-105' : ''
-      }`}>
-        <div className={`absolute left-3 flex items-center justify-center w-10 h-10 transition-colors ${
-          isFocused ? 'text-blue-500' : 'text-gray-400'
-        }`}>
-          <FiSearch className="w-5 h-5" />
-        </div>
+    <div className="relative max-w-md mx-auto">
+      <div className="relative flex items-center bg-white/90 backdrop-blur-md 
+                    rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.12)]">
+        <FiSearch className="absolute left-4 text-gray-400/80 w-[18px] h-[18px]" />
         
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          className="w-full py-4 pl-14 pr-20 text-gray-700 text-lg border-2 rounded-full 
-                   outline-none bg-white shadow-lg transition-all duration-300
-                   focus:border-blue-500 focus:ring-4 focus:ring-blue-100
-                   hover:shadow-xl"
-          placeholder="Search for app..."
+          className="w-full py-[10px] pl-12 pr-12 text-[15px] text-gray-700
+                   rounded-full outline-none bg-transparent
+                   placeholder:text-gray-500/70"
+          placeholder="Search..."
         />
 
-        <div className="absolute right-3 flex items-center space-x-2">
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery('')}
-              className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
-            >
-              <FiX className="w-5 h-5" />
-            </button>
-          )}
-          
-          <button
-            onClick={isListening ? stopListening : startListening}
-            className={`p-3 rounded-full transition-all duration-300 ${
-              isListening 
-                ? 'bg-red-50 text-red-500 hover:bg-red-100' 
-                : 'bg-gray-50 text-gray-400 hover:bg-gray-100'
-            }`}
-          >
-            <FiMic className={`w-5 h-5 ${
-              isListening ? 'animate-pulse' : ''
-            }`} />
-          </button>
-        </div>
+        <button
+          onClick={isListening ? stopListening : startListening}
+          className="absolute right-4 p-1.5 text-gray-400/90"
+        >
+          <FiMic className={`w-[18px] h-[18px] ${isListening ? 'text-red-500' : ''}`} />
+        </button>
       </div>
-
-      {/* Search suggestions dropdown */}
-      {isFocused && searchQuery && (
-        <div className="absolute w-full mt-2 py-2 bg-white rounded-2xl shadow-xl border">
-          <div className="px-4 py-2 text-sm text-gray-500">
-            Recent Searches
-          </div>
-          {/* Add your search suggestions here */}
-        </div>
-      )}
     </div>
   );
 }; 
