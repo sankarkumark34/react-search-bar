@@ -1,5 +1,5 @@
 import React from 'react';
-import { Demo } from './components/Demo';
+import { Demo } from './components/SearchInterface';
 
 const App: React.FC = () => {
   return (
