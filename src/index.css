@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base styles */
 body {
   margin: 0;
   padding: 0;
@@ -12,17 +13,13 @@ body {
   box-sizing: border-box;
 }
 
-/* More subtle shadow effect */
-.search-shadow {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-/* Soft white background with slight transparency */
+/* Search bar specific styles */
 .search-container {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 12px;
 }
 
-/* Remove input autofill background */
+/* Fix autofill background */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
