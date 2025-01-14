@@ -6,6 +6,11 @@ body {
   @apply bg-[#f8f0f0] min-h-screen;
 }
 
+/* More subtle shadow effect */
+.search-shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
 /* Soft white background with slight transparency */
 .search-container {
   background: rgba(255, 255, 255, 0.9);

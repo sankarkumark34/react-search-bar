@@ -33,26 +33,26 @@ export const SearchBar = () => {
   };
 
   return (
-    <div className="relative max-w-md mx-auto">
-      <div className="relative flex items-center bg-white/90 backdrop-blur-md 
-                    rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.12)]">
-        <FiSearch className="absolute left-4 text-gray-400/80 w-[18px] h-[18px]" />
+    <div className="relative max-w-md mx-auto px-4">
+      <div className="relative flex items-center bg-white/95 
+                    rounded-[24px] shadow-[0_1px_3px_rgba(0,0,0,0.08)]">
+        <FiSearch className="absolute left-3 text-[#666666] w-4 h-4" />
         
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full py-[10px] pl-12 pr-12 text-[15px] text-gray-700
-                   rounded-full outline-none bg-transparent
-                   placeholder:text-gray-500/70"
+          className="w-full py-2.5 pl-10 pr-10 text-[14px] text-gray-800
+                   rounded-[24px] outline-none bg-transparent
+                   placeholder:text-[#666666]"
           placeholder="Search..."
         />
 
         <button
           onClick={isListening ? stopListening : startListening}
-          className="absolute right-4 p-1.5 text-gray-400/90"
+          className="absolute right-3 p-1 text-[#666666]"
         >
-          <FiMic className={`w-[18px] h-[18px] ${isListening ? 'text-red-500' : ''}`} />
+          <FiMic className={`w-4 h-4 ${isListening ? 'text-red-500' : ''}`} />
         </button>
       </div>
     </div>
