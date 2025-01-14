@@ -118,28 +118,6 @@ Found a bug? Please create an issue with:
 - Email:ksankarkumar34@gmail.com
 - LinkedIn: [@sankarkumarkathirvel](https://www.linkedin.com/in/sankarkumarkathirvel/)
 
-## 🔍 Keywords
- react-search
- voice-search
-- speech-recognition
-- react-voice-search
-- react-searchbar
-- animated-search
-- typescript-search
-- react-component
-- framer-motion
-- glass-morphism
-- modern-ui
-- tailwindcss
-- react-typescript
-- voice-input
-- search-component
-- react-voice-recognition
-- elegant-ui
-- gradient-ui
-- responsive-search
-- react-speech-recognition
-- voice-search-component
 ---
 
 Made with ❤️ by Sankarkumar Kathirvel
