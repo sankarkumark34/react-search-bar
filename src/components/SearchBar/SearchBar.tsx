@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, MicOff, Search, Loader2 } from 'lucide-react';
+import { useSearch } from '../../context/SearchContext';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -11,36 +12,59 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   onSearch,
   placeholder = 'Search...'
 }) => {
-  const [query, setQuery] = useState('');
-  const [isListening, setIsListening] = useState(false);
+  const { searchQuery, setSearchQuery, isListening, setIsListening } = useSearch();
   const [isLoading, setIsLoading] = useState(false);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const recognitionRef = useRef<any>(null);
 
   const startListening = () => {
-    if (!('webkitSpeechRecognition' in window)) {
-      alert('Voice search is not supported in your browser');
-      return;
+    try {
+      if (!('webkitSpeechRecognition' in window)) {
+        setError('Voice search is not supported in your browser');
+        return;
+      }
+
+      // Reset any previous error
+      setError(null);
+
+      recognitionRef.current = new (window as any).webkitSpeechRecognition();
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.lang = 'en-US'; // Add language support
+
+      recognitionRef.current.onstart = () => {
+        setIsListening(true);
+        console.log('Voice recognition started');
+      };
+
+      recognitionRef.current.onend = () => {
+        setIsListening(false);
+        console.log('Voice recognition ended');
+      };
+
+      recognitionRef.current.onerror = (event: any) => {
+        setError(`Error: ${event.error}`);
+        setIsListening(false);
+        console.error('Voice recognition error:', event);
+      };
+
+      recognitionRef.current.onresult = (event: any) => {
+        try {
+          const transcript = event.results[0][0].transcript;
+          console.log('Transcript:', transcript);
+          setSearchQuery(transcript);
+          handleSearch(transcript);
+        } catch (err) {
+          setError('Failed to process voice input');
+          console.error('Result processing error:', err);
+        }
+      };
+
+      recognitionRef.current.start();
+    } catch (err) {
+      setError('Failed to start voice recognition');
+      console.error('Start recognition error:', err);
     }
-
-    recognitionRef.current = new webkitSpeechRecognition();
-    recognitionRef.current.continuous = false;
-    recognitionRef.current.interimResults = false;
-
-    recognitionRef.current.onstart = () => {
-      setIsListening(true);
-    };
-
-    recognitionRef.current.onend = () => {
-      setIsListening(false);
-    };
-
-    recognitionRef.current.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      setQuery(transcript);
-      handleSearch(transcript);
-    };
-
-    recognitionRef.current.start();
   };
 
   const stopListening = () => {
@@ -59,7 +83,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    await onSearch(query);
+    await onSearch(searchQuery);
     setIsLoading(false);
   };
 
@@ -82,8 +106,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           
           <input
             type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={placeholder}
             className="w-full h-12 pl-12 pr-12 bg-white/95 
                      rounded-full shadow-sm focus:outline-none 
@@ -132,6 +156,21 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           </motion.div>
         )}
       </AnimatePresence>
+
+      {error && (
+        <motion.div
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -5 }}
+          className="absolute left-0 right-0 mt-3"
+        >
+          <div className="mx-auto max-w-md bg-red-50 
+                        rounded-full py-2 px-4 shadow-lg
+                        flex items-center justify-center text-red-500">
+            {error}
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 }; 
