@@ -85,22 +85,22 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={placeholder}
-            className="w-full h-12 pl-12 pr-12 bg-white border border-gray-200 
-                     rounded-xl shadow-sm focus:outline-none focus:ring-2 
-                     focus:ring-blue-500 focus:border-transparent 
+            className="w-full h-12 pl-12 pr-12 bg-white/95 
+                     rounded-full shadow-sm focus:outline-none 
+                     focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50
                      transition-all duration-200"
           />
 
           <motion.button
             type="button"
             onClick={isListening ? stopListening : startListening}
-            className={`absolute right-4 p-2 rounded-full transition-colors 
+            className={`absolute right-4 p-2 rounded-full transition-all 
                        duration-200 ${
               isListening 
-                ? 'bg-red-500 text-white hover:bg-red-600' 
-                : 'text-gray-400 hover:text-blue-500'
+                ? 'bg-purple-500 text-white shadow-lg' 
+                : 'text-gray-400 hover:text-purple-500'
             }`}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             {isListening ? (
@@ -115,13 +115,20 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       <AnimatePresence>
         {isListening && (
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            className="mt-4 p-4 bg-blue-50 rounded-lg text-center 
-                     text-sm text-blue-600"
+            exit={{ opacity: 0, y: -5 }}
+            transition={{ duration: 0.2 }}
+            className="absolute left-0 right-0 mt-3"
           >
-            Listening... Speak now
+            <div className="mx-auto max-w-md bg-white/95 backdrop-blur-sm
+                          rounded-full py-2 px-4 shadow-lg
+                          flex items-center justify-center space-x-2">
+              <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
+              <span className="text-sm text-gray-600">
+                Listening... Speak now
+              </span>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
