@@ -1,50 +1,145 @@
-# React + TypeScript + Vite
+# 🎯 React Search Bar KS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, animated voice-enabled search component built with React, TypeScript, and Framer Motion.
 
-Currently, two official plugins are available:
+![React Search Bar KS ]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 🎤 Voice Search with Speech Recognition API
+- 🎨 Beautiful gradient background with smooth animations
+- 🌓 Glass-morphism UI design
+- 🎯 TypeScript support for type safety
+- 🎪 Framer Motion animations for smooth transitions
+- 📱 Fully responsive design
+- ⚡ Loading states and error handling
+- 🔍 Real-time search feedback
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🚀 Installation
 
-- Configure the top-level `parserOptions` property like this:
+```bash
+# Using npm
+npm install react-search-bar-ks
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# Using yarn
+yarn add react-search-bar-ks
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 💻 Usage
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```tsx
+import { SearchBar } from 'react-elegant-voice-search';
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+function App() {
+  const handleSearch = async (query: string) => {
+    // Handle search logic here
+    console.log('Searching for:', query);
+  };
+
+  return (
+    <SearchBar 
+      onSearch={handleSearch}
+      placeholder="Search anything..."
+    />
+  );
+}
 ```
+
+## 🛠️ Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `onSearch` | `(query: string) => void` | Required | Callback function when search is triggered |
+| `placeholder` | `string` | "Search..." | Placeholder text for search input |
+
+## 🎨 Features in Detail
+
+### Voice Search
+- Uses the Web Speech API for voice recognition
+- Visual feedback during voice recording
+- Automatic search trigger after voice input
+- Error handling for unsupported browsers
+
+### Animations
+- Smooth entrance animations
+- Microphone button hover effects
+- Loading state animations
+- Voice recording indicator pulse effect
+
+### UI/UX
+- Clean, minimal design
+- Glass-morphism effects
+- Responsive layout
+- Focus states and accessibility
+
+## 🔧 Browser Support
+
+- Chrome/Edge (Full support)
+- Firefox (Full support except voice)
+- Safari (Full support)
+- Opera (Full support)
+
+## 📦 Dependencies
+
+- React 16.8+ (for Hooks)
+- Framer Motion
+- Lucide React
+- Tailwind CSS
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+MIT © [Your Name]
+
+## 🙏 Credits
+
+- [Framer Motion](https://www.framer.com/motion/) for animations
+- [Lucide Icons](https://lucide.dev/) for beautiful icons
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+
+## 🐛 Bug Reports
+
+Found a bug? Please create an issue with:
+1. Bug description
+2. Steps to reproduce
+3. Expected vs actual behavior
+4. Browser and OS details
+
+## 📞 Support
+
+- GitHub Issues: [Create an issue](https://github.com/sankarkumark34/react-search-bar.git)
+- Email:ksankarkumar34@gmail.com
+- LinkedIn: [@sankarkumarkathirvel](https://www.linkedin.com/in/sankarkumarkathirvel/)
+
+## 🔍 Keywords
+- react-search
+- voice-search
+- speech-recognition
+- react-voice-search
+- react-searchbar
+- animated-search
+- typescript-search
+- react-component
+- framer-motion
+- glass-morphism
+- modern-ui
+- tailwindcss
+- react-typescript
+- voice-input
+- search-component
+- react-voice-recognition
+- elegant-ui
+- gradient-ui
+- responsive-search
+- react-speech-recognition
+- voice-search-component
+---
+
+Made with ❤️ by Sankarkumar Kathirvel

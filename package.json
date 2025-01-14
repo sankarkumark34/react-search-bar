@@ -1,7 +1,7 @@
 {
-  "name": "react-search-bar",
-  "private": true,
-  "version": "0.0.0",
+  "name": "react-search-bar-ks",
+  "private": false,
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
