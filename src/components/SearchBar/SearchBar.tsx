@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { FiSearch, FiMic, FiLoader } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mic, MicOff, Search, Loader2 } from 'lucide-react';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -8,7 +9,7 @@ interface SearchBarProps {
 
 export const SearchBar: React.FC<SearchBarProps> = ({
   onSearch,
-  placeholder = 'Search for app &...'
+  placeholder = 'Search...'
 }) => {
   const [query, setQuery] = useState('');
   const [isListening, setIsListening] = useState(false);
@@ -55,50 +56,75 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     setIsLoading(false);
   };
 
-  return (
-    <div className="relative max-w-2xl mx-auto">
-      <div className="relative flex items-center bg-white/95 
-                    rounded-full shadow-[0_1px_4px_rgba(0,0,0,0.1)]">
-        <div className="absolute left-4 text-[#5f6368]">
-          {isLoading ? (
-            <FiLoader className="w-5 h-5 animate-spin" />
-          ) : (
-            <FiSearch className="w-5 h-5" />
-          )}
-        </div>
-        
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleSearch(query);
-            }
-          }}
-          className="w-full py-3.5 pl-12 pr-12 text-[16px] text-[#3c4043]
-                   rounded-full outline-none bg-transparent
-                   placeholder:text-[#5f6368]"
-          placeholder={placeholder}
-        />
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    await onSearch(query);
+    setIsLoading(false);
+  };
 
-        <button
-          onClick={isListening ? stopListening : startListening}
-          className={`absolute right-4 p-1.5 transition-colors duration-200 ${
-            isListening 
-              ? 'text-red-500' 
-              : 'text-[#5f6368] hover:text-[#3c4043]'
-          }`}
+  return (
+    <div className="w-full max-w-2xl mx-auto">
+      <form onSubmit={handleSubmit} className="relative group">
+        <motion.div
+          className="relative flex items-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
         >
-          <FiMic className="w-5 h-5" />
-        </button>
-      </div>
-      
-      {isListening && (
-        <div className="absolute mt-4 w-full text-center text-white text-sm">
-          Listening... Speak now
-        </div>
-      )}
+          <div className="absolute left-4 text-gray-400">
+            {isLoading ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <Search className="w-5 h-5" />
+            )}
+          </div>
+          
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={placeholder}
+            className="w-full h-12 pl-12 pr-12 bg-white border border-gray-200 
+                     rounded-xl shadow-sm focus:outline-none focus:ring-2 
+                     focus:ring-blue-500 focus:border-transparent 
+                     transition-all duration-200"
+          />
+
+          <motion.button
+            type="button"
+            onClick={isListening ? stopListening : startListening}
+            className={`absolute right-4 p-2 rounded-full transition-colors 
+                       duration-200 ${
+              isListening 
+                ? 'bg-red-500 text-white hover:bg-red-600' 
+                : 'text-gray-400 hover:text-blue-500'
+            }`}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {isListening ? (
+              <MicOff className="w-5 h-5" />
+            ) : (
+              <Mic className="w-5 h-5" />
+            )}
+          </motion.button>
+        </motion.div>
+      </form>
+
+      <AnimatePresence>
+        {isListening && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            className="mt-4 p-4 bg-blue-50 rounded-lg text-center 
+                     text-sm text-blue-600"
+          >
+            Listening... Speak now
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }; 
