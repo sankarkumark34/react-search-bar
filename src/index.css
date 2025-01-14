@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Custom styles */
+body {
+  @apply bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen;
+}
+
+/* Glass effect */
+.glass-effect {
+  @apply backdrop-blur-lg bg-white/30;
+}
