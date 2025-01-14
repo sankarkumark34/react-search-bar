@@ -1,14 +1,12 @@
-import { SearchProvider } from './context/SearchContext';
-import { SearchBar } from './components/SearchBar/SearchBar';
+import React from 'react';
+import { Demo } from './components/Demo';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <SearchProvider>
-      <div className="min-h-screen bg-gray-100 p-4">
-        <SearchBar />
-      </div>
-    </SearchProvider>
+    <div className="font-sans">
+      <Demo />
+    </div>
   );
-}
+};
 
 export default App;
