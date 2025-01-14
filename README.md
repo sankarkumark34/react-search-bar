@@ -2,7 +2,7 @@
 
 A modern, animated voice-enabled search component built with React, TypeScript, and Framer Motion.
 
-![Elegant Voice Search ]
+![React Search Bar KS ]
 
 ## ✨ Features
 
@@ -114,10 +114,32 @@ Found a bug? Please create an issue with:
 
 ## 📞 Support
 
-- GitHub Issues: [Create an issue](https://github.com/yourusername/elegant-voice-search/issues)
-- Email: your.email@example.com
-- Twitter: [@yourhandle](https://twitter.com/yourhandle)
+- GitHub Issues: [Create an issue](https://github.com/sankarkumark34/react-search-bar.git)
+- Email:ksankarkumar34@gmail.com
+- LinkedIn: [@sankarkumarkathirvel](https://www.linkedin.com/in/sankarkumarkathirvel/)
 
+## 🔍 Keywords
+- react-search
+- voice-search
+- speech-recognition
+- react-voice-search
+- react-searchbar
+- animated-search
+- typescript-search
+- react-component
+- framer-motion
+- glass-morphism
+- modern-ui
+- tailwindcss
+- react-typescript
+- voice-input
+- search-component
+- react-voice-recognition
+- elegant-ui
+- gradient-ui
+- responsive-search
+- react-speech-recognition
+- voice-search-component
 ---
 
 Made with ❤️ by Sankarkumar Kathirvel
