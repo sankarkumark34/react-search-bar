@@ -96,7 +96,7 @@ function App() {
 
 ## 📝 License
 
-MIT © [Your Name]
+Distributed under the MIT License. See LICENSE for more information.
 
 ## 🙏 Credits
 
@@ -119,8 +119,8 @@ Found a bug? Please create an issue with:
 - LinkedIn: [@sankarkumarkathirvel](https://www.linkedin.com/in/sankarkumarkathirvel/)
 
 ## 🔍 Keywords
-- react-search
-- voice-search
+ react-search
+ voice-search
 - speech-recognition
 - react-voice-search
 - react-searchbar
