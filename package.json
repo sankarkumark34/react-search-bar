@@ -1,7 +1,7 @@
 {
   "name": "react-search-bar-ks",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.6",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -32,5 +32,33 @@
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
     "vite": "^6.0.5"
+  },
+  "keywords": [
+    "react-search",
+    "voice-search",
+    "speech-recognition",
+    "react-voice-search",
+    "react-searchbar",
+    "animated-search",
+    "typescript-search",
+    "react-component",
+    "framer-motion",
+    "glass-morphism",
+    "modern-ui",
+    "tailwindcss",
+    "react-typescript",
+    "voice-input",
+    "search-component",
+    "react-voice-recognition",
+    "elegant-ui",
+    "gradient-ui",
+    "responsive-search",
+    "react-speech-recognition"
+  ],
+  "author": "Sankarkumar Kathirvel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sankarkumark34/react-search-bar.git"
   }
 }
